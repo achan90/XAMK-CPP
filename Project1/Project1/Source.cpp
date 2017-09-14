@@ -88,3 +88,5 @@ void siirto(int maara, int otan) {
 		}
 	}
 }
+
+//testing 
