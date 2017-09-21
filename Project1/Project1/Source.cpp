@@ -40,7 +40,7 @@ void siirto(int maara, int otan) {
 	//Mikäli käyttäjä joutuu ottamaan viimeisen tikun, häviää hän pelin.
 	//otan < 4 ehto, estää peliä päättymästä liian aikaisin (esim vahingossa 22 tikkua ottaessa)
 	if (maara - otan < 1 && otan < 4) {
-		std::cout << "Havisit pelin! Paina mita tahansa lopettaaksesi." << std::endl;
+		std::cout << "Havisit pelin! Paina ENTER lopettaaksesi." << std::endl;
 		std::cin.ignore();
 		std::cin.get();
 	}
