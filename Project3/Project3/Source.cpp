@@ -17,6 +17,11 @@ void leapYear(int year) {
 				std::cin.get();
 			}
 		}
+		else {
+			std::cout << year << " on karkausvuosi." << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+		}
 	}
 	else {
 		std::cout << year << " ei ole karkausvuosi." << std::endl;
