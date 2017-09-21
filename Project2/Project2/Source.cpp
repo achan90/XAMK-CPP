@@ -4,13 +4,13 @@
 */
 
 void priceCheck(int wallet, int price) {
-	if (wallet > price) {
-		std::cout << "Euroja: " << wallet << std::endl << "Jäätelön hinta: " << price << std::endl << "Osta jäätelö, rahaa jää " << wallet - price << " euroa.";
+	if (wallet >= price) {
+		std::cout << "Euroja: " << wallet << std::endl << "Jaatelon hinta: " << price << std::endl << "Osta jaatelo, rahaa jaa " << wallet - price << " euroa." << std::endl;
 		std::cin.ignore();
 		std::cin.get();
 	}
 	else {
-		std::cout << "Euroja: " << wallet << std::endl << "Jäätelön hinta: " << price << std::endl << "Paastoa!";
+		std::cout << "Euroja: " << wallet << std::endl << "Jaatelon hinta: " << price << std::endl << "Paastoa!" << std::endl;
 		std::cin.ignore();
 		std::cin.get();
 	}
@@ -24,10 +24,10 @@ int main(void) {
 	while (!(std::cin >> wallet)) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Anna euromäärä numeroina." << std::endl;
+		std::cout << "Anna euromaara numeroina." << std::endl;
 	}
 
-	std::cout << "Mikä on jäätelön hinta?" << std::endl;
+	std::cout << "Mika on jaatelon hinta?" << std::endl;
 	while (!(std::cin >> price)) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
