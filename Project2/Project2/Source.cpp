@@ -3,12 +3,16 @@
 /*
 */
 
-int priceCheck(wallet, price) {
+void priceCheck(int wallet, int price) {
 	if (wallet > price) {
-		std::cout << "Euroja: " << wallet + std::endl << "Jäätelön hinta: " << price << std::endl << "Osta jäätelö, rahaa jää " << wallet - price << " euroa.";
+		std::cout << "Euroja: " << wallet << std::endl << "Jäätelön hinta: " << price << std::endl << "Osta jäätelö, rahaa jää " << wallet - price << " euroa.";
+		std::cin.ignore();
+		std::cin.get();
 	}
 	else {
 		std::cout << "Euroja: " << wallet << std::endl << "Jäätelön hinta: " << price << std::endl << "Paastoa!";
+		std::cin.ignore();
+		std::cin.get();
 	}
 }
 
@@ -34,3 +38,5 @@ int main(void) {
 
 	return 0;
 }
+
+
