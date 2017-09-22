@@ -3,10 +3,15 @@
 /*
 Kuinka monta euroa lompakossasi on?
 Mika on jaatelon hinta?
-Euroja: 10
+Euroja: 10.5
+Jaatelon hinta: 2.75
+Osta jaatelo, rahaa jaa 7.75 euroa.
+
+Kuinka monta euroa lompakossasi on?
+Mika on jaatelon hinta?
+Euroja 0.25
 Jaatelon hinta: 2
-
-
+Paastoa!
 */
 
 void priceCheck(double wallet, double price) {
@@ -22,7 +27,7 @@ void priceCheck(double wallet, double price) {
 	}
 }
 
-double main(void) {
+int main(void) {
 	double wallet = 0;
 	double price = 0;
 
