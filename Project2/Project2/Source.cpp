@@ -1,9 +1,15 @@
 #include <iostream>
-// Pekka Pousi & ??
+// Pekka Pousi
 /*
+Kuinka monta euroa lompakossasi on?
+Mika on jaatelon hinta?
+Euroja: 10
+Jaatelon hinta: 2
+
+
 */
 
-void priceCheck(int wallet, int price) {
+void priceCheck(double wallet, double price) {
 	if (wallet >= price) {
 		std::cout << "Euroja: " << wallet << std::endl << "Jaatelon hinta: " << price << std::endl << "Osta jaatelo, rahaa jaa " << wallet - price << " euroa." << std::endl;
 		std::cin.ignore();
@@ -16,9 +22,9 @@ void priceCheck(int wallet, int price) {
 	}
 }
 
-int main(void) {
-	int wallet = 0;
-	int price = 0;
+double main(void) {
+	double wallet = 0;
+	double price = 0;
 
 	std::cout << "Kuinka monta euroa lompakossasi on?" << std::endl;
 	while (!(std::cin >> wallet)) {

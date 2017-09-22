@@ -1,6 +1,17 @@
 #include <iostream>
-// Pekka Pousi & ??
+// Pekka Pousi
 /*
+Anna vuosiluku:
+2014 ei ole karkausvuosi.
+
+Anna vuosiluku:
+2000 on karkausvuosi.
+
+Anna vuosiluku:
+1900 ei ole karkausvuosi.
+
+Anna vuosiluku:
+2016 on karkausvuosi.
 */
 
 void leapYear(int year) {
