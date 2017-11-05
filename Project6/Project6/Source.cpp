@@ -28,26 +28,26 @@ Loppu
 #include <regex>
 
 
-int start(void) {
-	std::string word = "";
-	std::cout << std::endl << "Anna sana: ";
-	std::cin >> word;
-
-	int length = word.length();
-
-	return length;
-}
-
 
 
 int main(void) {
-	start();
-	std::cout << std::endl << start() << std::endl;
+	while (true) {
+		std::string word = "";
+		std::cout << std::endl << "Anna sana: ";
+		std::cin >> word;
 
-	if (start() == 1) {
-		std::cout << std::endl << "Loppu." << std::endl;
-		system("pause");
-		return 0;
+		int length = word.length();
+
+		if (length == 1) {
+			std::cout << std::endl << "Loppu." << std::endl;
+			break;
+		}
+		else {
+			if (word[0] != word[length - 1]) {
+				
+			}
+		}
 	}
-
+	system("pause");
+	return 0;
 }
