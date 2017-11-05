@@ -43,8 +43,11 @@ int main(void) {
 			break;
 		}
 		else {
-			if (word[0] != word[length - 1]) {
-				
+			if (word[0] == word[length - 1]) {
+				int last = length - 1;
+				word.replace(0, 0, "*");
+				word.replace(last, last, "*");
+				std::cout << std::endl << "Et tainnut antaa sanaa " << word << std::endl;
 			}
 		}
 	}
