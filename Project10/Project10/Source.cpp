@@ -19,10 +19,6 @@ Loppu
 
 #include <iostream>
 #include <string>
-#include <regex>
-
-
-
 
 int main(void) {
 	while (true) {
@@ -39,7 +35,7 @@ int main(void) {
 		else {
 			if (word[0] == word[length - 1]) {
 				word.replace(0, 1, "*");
-				word.replace(length - 1, length, "*");
+				word.replace(length - 1, 1, "*");
 				std::cout << std::endl << "Et tainnut antaa sanaa " << word << std::endl;
 			}
 			else {
