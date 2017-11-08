@@ -42,5 +42,5 @@ int main(void) {
 	std::cout << std::endl << "'olit' poistettu: " << str << std::endl;
 	system("pause");
 
-	return 1;
+	return 0;
 }
