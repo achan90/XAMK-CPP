@@ -4,15 +4,15 @@
 
 void start(std::string input) {
 	std::regex rgxArray[4] = { std::regex("\x84"),std::regex("\x8e"),std::regex("\x94"),std::regex("\x99") };
+	std::string strArray[4] = {"a","A","o","O"};
 
-	input = std::regex_replace(input, rgxArray[0], "a");
-	input = std::regex_replace(input, rgxArray[1], "A");
-	input = std::regex_replace(input, rgxArray[2], "ö");
-	input = std::regex_replace(input, rgxArray[3], "Ö");
-
+	for (int x = 0; x < 4; x++) {
+		if (std::regex_match(input, rgxArray[x]) == true){
+			input = std::regex_replace(input, rgxArray[x], strArray[x]);
+		}
+	}
 	std::cout << std::endl << input << std::endl;
-
-	std::cout << "Syötä rivi tekstiä: " << std::endl;
+	std::cout << "Syota rivi tekstia: " << std::endl;
 	std::getline(std::cin, input);
 
 	for (int x = 0; x < 4; x++) {
@@ -23,13 +23,12 @@ void start(std::string input) {
 			return;
 		}
 	}
-
 }
 
 int main(void) {
 	std::string input;	
 
-	std::cout << "Syötä rivi tekstiä: " << std::endl;
+	std::cout << "Syota rivi tekstia: " << std::endl;
 	std::getline(std::cin, input);
 
 	start(input);
