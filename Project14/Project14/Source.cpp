@@ -2,37 +2,42 @@
 #include <string>
 #include <regex>
 
-void start(std::string input) {
-	std::regex rgxArray[4] = { std::regex("\x84"),std::regex("\x8e"),std::regex("\x94"),std::regex("\x99") };
-	std::string strArray[4] = {"a","A","o","O"};
+void start(void);
+void checkRegex(std::string);
 
-	for (int x = 0; x < 4; x++) {
-		if (std::regex_match(input, rgxArray[x]) == true) {
-			input = std::regex_replace(input, rgxArray[x], strArray[x]);
-		}
-	}
-	std::cout << std::endl << input << std::endl;
-	std::cout << "Syota rivi tekstia: " << std::endl;
+
+void start(void) {
+	std::string input;
+
+	std::cout << "Syota rivi tekstia: ";
 	std::getline(std::cin, input);
 
-	for (int x = 0; x < 4; x++) {
-		if (std::regex_match(input, rgxArray[x]) == true) {
-			start(input);
-		}
-		else {
-			return;
+	checkRegex(input);
+}
+
+void checkRegex(std::string input) {
+	bool stop = true;
+	std::regex rgxArray[4] = { std::regex("\x84"),std::regex("\x8e"),std::regex("\x94"),std::regex("\x99") };
+	std::string strArray[4] = {"a","A","o","O" };
+
+	for (int i = 0; i < 4; i++) {
+		if (std::regex_search(input, rgxArray[i]) == true) {
+			stop = false;
 		}
 	}
+	for (int i = 0; i < 4; i++) {
+		input = std::regex_replace(input, rgxArray[i], strArray[i]);
+	}
+	std::cout << input << std::endl << std::endl;
+
+	if (stop == true) {
+		return;
+	}
+	start();
 }
 
 int main(void) {
-	std::string input;	
-
-	std::cout << "Syota rivi tekstia: " << std::endl;
-	std::getline(std::cin, input);
-
-	start(input);
-
+	start();
 	std::cout << std::endl;
 	system("pause");
 	return 0;
