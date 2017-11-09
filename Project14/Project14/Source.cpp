@@ -7,7 +7,7 @@ void start(std::string input) {
 	std::string strArray[4] = {"a","A","o","O"};
 
 	for (int x = 0; x < 4; x++) {
-		if (std::regex_match(input, rgxArray[x]) == true){
+		if (std::regex_match(input, rgxArray[x]) == true) {
 			input = std::regex_replace(input, rgxArray[x], strArray[x]);
 		}
 	}
