@@ -39,17 +39,11 @@ int main(void) {
 		std::regex_match(str, find);
 
 		for (std::sregex_iterator count = std::sregex_iterator(str.begin(), str.end(), find);
-			count != std::sregex_iterator(); ++count) {
+			(!(count == std::sregex_iterator())); count++) {
 
 			std::smatch match = *count;
-			std::string numPair = match.str();
-			numPair = std::regex_replace(numPair, rmvChr, "");
-			std::string num1(1, numPair[0]);
-			std::string num2(1, numPair[1]);
-
-			if (std::stoi(num2) - std::stoi(num1)) {
-				std::cout << numPair << std::endl;
-			}
+			std::string numPair = std::regex_replace(match.str(), rmvChr, "");
+			std::cout << numPair << std::endl;
 		}
 	} while (!(str.empty()));
 
