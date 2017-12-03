@@ -7,11 +7,11 @@
 int main(void) {
 	int num = 0;
 	int count = 0;
-	int array1[10];
+	int array1[10] = { 0 };
 	int array2[10] = { 11,12,13,14,15,16,17,18,19,20 };
 	bool check = false;
 
-	while (array1[9] == -858993460) {
+	while (array1[9] == 0) {
 		std::cout << std::endl << "Enter number between 11 and 20: ";;
 		std::cin >> num;
 
