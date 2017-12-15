@@ -21,12 +21,14 @@ Lopuksi taulukko tulostetaan.
 const int array_size = 10;
 
 std::array<int, array_size> alusta(void) {
-	std::array<int, 10> array;
+	std::array<int, array_size> array;
 	std::srand(std::time(0));
-	
-	for (int i = 0; i < 10; i++) {
+
+	for (int i = 0; i < array_size; i++) {
 		array[i] = std::rand();
+		//array[i] = i;
 	}
+	return array;
 }
 
 int pyydaLuku(void) {
@@ -38,8 +40,32 @@ int pyydaLuku(void) {
 	return num;
 }
 
+int etsi(std::array<int, array_size> array, int num) {
+	int index = 0;
+
+	for (int i = 0; i < array_size; i++) {
+		if (array[i] == num) {
+			index = i;
+			return index;
+		}
+	}
+	return -1;
+}
+
+std::array<int, array_size> poista(std::array<int, array_size> array, int index) {
+	for (int i = index; i < array_size; i++) {
+		if (i == array_size - 1) {
+			array[array_size - 1] = 0;
+		}
+		else {
+			array[i] = array[i + 1];
+		}
+	}
+	return array;
+}
+
 void tulosta(std::array<int, array_size> array) {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < array_size; i++) {
 		std::cout << array[i] << " ";
 	}
 	std::cout << std::endl << std::endl;
@@ -48,24 +74,9 @@ void tulosta(std::array<int, array_size> array) {
 int main(void) {
 	auto num = pyydaLuku();
 	auto array = alusta();
-	int index = 0;
-	bool check = false;	
 
-	for (int i = 0; i < 10; i++) {
-		if (array[i] == num) {
-			index = i;
-			check = true;
-		}
-	}
-	if (check == true) {
-		for (int i = index; i < 10; i++) {
-			array[i] = array[i + 1];
-		}
-	}
-	if (check == true) {
-		array[9] = 0;
-	}
-	tulosta(array);
+	etsi(array, num);
+	tulosta(poista(array, num));
 
 	system("pause");
 	return EXIT_SUCCESS;
