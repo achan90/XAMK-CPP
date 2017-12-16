@@ -2,7 +2,6 @@
 #include <string>
 #include <algorithm>
 #include <functional>
-#include <memory>
 
 int main(void) {
 	int num = 0;
