@@ -7,6 +7,17 @@
 bool continue_execution = true;
 char user_input[1];
 
+enum direction {
+	North,
+	East,
+	South,
+	West
+};
+
+void move(direction dir) {
+	std::cout << std::endl << "You moved -> " << dir << "." << std::endl;
+}
+
 bool main_menu(void) {
 	std::cout << std::endl << "What's your next move? ";
 
@@ -17,21 +28,25 @@ bool main_menu(void) {
 	switch (input_key) {
 		case 'W':
 		case 'w':
+			move(North);
 			std::cout << "You pressed '" << input_key << "'..." << std::endl;
 		break;
 
 		case 'A':
 		case 'a':
+			move(West);
 			std::cout << "You pressed '" << input_key << "'..." << std::endl;
 		break;
 
 		case 'S':
 		case 's':
+			move(South);
 			std::cout << "You pressed '" << input_key << "'..." << std::endl;
 		break;
 
 		case 'D':
 		case 'd':
+			move(East);
 			std::cout << "You pressed '" << input_key << "'..." << std::endl;
 		break;
 
