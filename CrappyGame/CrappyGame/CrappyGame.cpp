@@ -1,74 +1,222 @@
-// CrappyGame.cpp : Defines the entry point for the console application.
-//
+//Osio 1
+#include "stdafx.h" //Visual Studio precompiled headers -> https://www.viva64.com/en/b/0265/
+#include <iostream> //cin, cout... -> http://www.cplusplus.com/reference/iostream/
+using namespace std; //no need to explicitly add std:: before anything that's found from Standard C++ Library -> http://www.cplusplus.com/reference/
 
-#include "stdafx.h"
-#include <iostream>
+					 //Osio 2
+#include <string> //Strings are objects that represent sequences of characters -> http://www.cplusplus.com/reference/string/string/
+#include <iomanip> //Header providing parametric manipulators -> http://www.cplusplus.com/reference/iomanip/
 
-bool continue_execution = true;
-char user_input[1];
+					 //Osio 1
+bool continueExecution = true;
+char userInput[1];
 
-enum direction {
+//Enums -> http://www.cplusplus.com/doc/tutorial/other_data_types/
+enum Direction {
 	North,
 	East,
 	South,
 	West
 };
 
-void move(direction dir) {
-	std::cout << std::endl << "You moved -> " << dir << "." << std::endl;
-}
 
-bool main_menu(void) {
-	std::cout << std::endl << "What's your next move? ";
+//Osio 3b - Player struct to Character Class
+class Character {
+private:
 
-	char input_key;
-	std::cin >> input_key;
-	std::cin.ignore(256, '\n');
+	//Private variables
+	int mapWidth;
+	int mapHeight;
 
-	switch (input_key) {
-		case 'W':
-		case 'w':
-			move(North);
-			std::cout << "You pressed '" << input_key << "'..." << std::endl;
-		break;
+public:
+	//Public variables (members, fields, properties)
+	string Name = "Sepi";
+	int Hp = 30;
+	int Strength = 7;
+	int MapPosX = 17;
+	int MapPosY = 3;
 
-		case 'A':
-		case 'a':
-			move(West);
-			std::cout << "You pressed '" << input_key << "'..." << std::endl;
-		break;
+	//Public Methods
 
-		case 'S':
-		case 's':
-			move(South);
-			std::cout << "You pressed '" << input_key << "'..." << std::endl;
-		break;
+	//Constructor method - optional way to create new Instance of Player (basically doing)
+	Character(string _name, int _hp, int _strength, int _mapPosX, int _mapPosY, int _mapWidth, int _mapHeight) {
+		Name = _name;
+		Hp = _hp;
+		Strength = _strength;
+		MapPosX = _mapPosX;
+		MapPosY = _mapPosY;
 
-		case 'D':
-		case 'd':
-			move(East);
-			std::cout << "You pressed '" << input_key << "'..." << std::endl;
-		break;
-
-		case 'Q':
-		case 'q':
-			std::cout << std::endl;
-			return false;
-		break;
-
-		default:
-			std::cout << "Unknown command '" << input_key << "'" << std::endl;
-		break;
+		//map size in this scope for Move method
+		mapWidth = _mapWidth;
+		mapHeight = _mapHeight;
 	}
 
+	void Move(Direction dir) {
+		if (dir == North && MapPosY > 0)
+			MapPosY--; //one step up
+		else if (dir == West && MapPosX < mapWidth - 1)
+			MapPosX++; //one step right
+		else if (dir == South && MapPosY < mapHeight - 1)
+			MapPosY++; //one step down
+		else if (dir == East && MapPosX > 0)
+			MapPosX--; //one step left	
+	}
+};
+//End of Osio 3
+
+
+
+//Osio 2
+
+//Arrays-> http://www.cplusplus.com/doc/tutorial/arrays/
+string keyCommands[][2]
+{
+	{ "W", "Move North" },
+	{ "A", "Move West" },
+	{ "S", "Move South" },
+	{ "D", "Move East" },
+	{ "Q", "Quit" }
+};
+
+string mapCharacters[][2]
+{
+	{ ".","Road" },
+	{ "T","Tree" },
+	{ "~", "Plains" },
+	{ "^","Mountain" }
+};
+
+const int mapWidth = 20;
+const int mapHeight = 10;
+
+string map[mapHeight][mapWidth]
+{
+	//1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 (0-19)
+	{ "^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^" }, //1
+	{ "^","^","^","~","~","~","~","^","^","^","~","~","~","~","T","T","T","T","^","^" }, //2
+	{ "^",".",".",".","T","~",".",".",".","~","~","~","~","~","~","~","T","T","~","^" }, //3
+	{ "^","~","~",".","~","~",".","T",".","~","~","~","~","~","~",".",".",".",".","^" }, //4
+	{ "^","^","~",".",".",".",".","~",".","~","~","~","~","~","~",".","~","~","~","^" }, //5
+	{ "^","~","~","~","~","~","~","~",".","~","~","~","T","~","~",".","T","~","~","^" }, //6
+	{ "^","T","T","~","~","~","~","~",".","~",".",".",".",".",".",".","~","~","~","^" }, //7
+	{ "^","^","T","~","~","~","T","~",".",".",".","~","~","~","~","~","~","~","~","^" }, //8
+	{ "^","^","T","~","~","~","~","~","~","~","~","~","~","~","~","~","~","^","^","^" }, //9
+	{ "^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^" }, //10 (0-9)
+};
+
+//Before our 'hero' was an object of structure 'player' and now it's instance of class Character...
+Character hero("Sepi", 30, 7, 17, 3, mapWidth, mapHeight);
+
+
+// Osio 2
+
+//Is player on the road, plains, mountain or is there a tree where he stands
+void PrintPlayerPos() {
+	string currentMapSymbolValue = map[hero.MapPosY][hero.MapPosX]; //What's the map character under player's pos?
+	int arrOuterLength = sizeof(mapCharacters) / sizeof(mapCharacters[0]);
+
+	for (int i = 0; i < arrOuterLength; i++) {
+		if (mapCharacters[i][0] == currentMapSymbolValue) //if 'key' matches...
+		{
+			cout << mapCharacters[i][1] << "." << endl; //...print 'value'
+			break;
+		}
+	}
+}
+
+//List all available commands in a neat 'table'
+void ListCommands() {
+	cout << left << setw(10) << "Key" << right << setw(20) << "Command" << endl;
+	cout << setfill('-') << setw(30) << "-" << endl;
+
+	int arrOuterLength = sizeof(keyCommands) / sizeof(keyCommands[0]);
+
+	cout << setfill('.');  //fill with spaces
+	for (int i = 0; i < arrOuterLength; i++) {
+		cout << left << setw(10) << keyCommands[i][0] << right << setw(20) << keyCommands[i][1] << endl;
+	}
+
+	//new line
+	cout << "\n";
+}
+
+void DrawMap() {
+	//In outer loop we iterate through our map array's "rows"
+	for (int row = 0; row < mapHeight; row++) {
+		//...and in inner loop we iterate through columns and print the value for map "cell" to x,y position
+		for (int col = 0; col < mapWidth; col++) {
+			if (row == hero.MapPosY && col == hero.MapPosX) {
+				cout << "@";
+			}
+			else {
+				cout << map[row][col];
+			}
+		}
+		//new line after columns loop
+		cout << "\n";
+	}
+
+	//Print where player is standing currently
+	PrintPlayerPos();
+
+	//new line after map is drawn
+	cout << "\n";
+}
+
+bool MainMenu() {
+
+	ListCommands();
+	DrawMap();
+
+	cout << "What's your next move: ";
+
+	char inputKey;
+	cin >> inputKey;
+	cin.ignore(256, '\n');
+
+	switch (inputKey) {
+	case 'W': case 'w':
+		hero.Move(North);
+		cout << "You pressed w or W..." << endl;
+		break;
+
+	case 'A': case 'a':
+		hero.Move(East);
+		cout << "You pressed a or A..." << endl;
+		break;
+
+	case 'S': case 's':
+		hero.Move(South);
+		cout << "You pressed s or S..." << endl;
+		break;
+
+	case 'D': case 'd':
+		hero.Move(West);
+		cout << "You pressed d or D..." << endl;
+		break;
+
+	case 'Q': case 'q':
+		return false;
+		break;
+
+	default:
+		cout << "Unknown command '" << inputKey << "'." << endl;
+		break;
+	}
 	return true;
 }
 
-int main() {
-	while (continue_execution) {
-		continue_execution = main_menu();
+int main()
+{
+	//InitHero();
+
+	while (continueExecution)
+	{
+		//System (in this case Windows) call to clear console. Just to simulate game with one view...		
+		system("cls");
+
+		continueExecution = MainMenu();
+
 	}
-
-    return 0;
+	return 0;
 }
-
