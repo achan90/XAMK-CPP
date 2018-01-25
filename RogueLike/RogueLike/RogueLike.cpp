@@ -2,6 +2,7 @@
 #include <iostream> //cin, cout... -> http://www.cplusplus.com/reference/iostream/
 #include <string> //Strings are objects that represent sequences of characters -> http://www.cplusplus.com/reference/string/string/
 #include <iomanip> //Header providing parametric manipulators -> http://www.cplusplus.com/reference/iomanip/
+#include "Character.h"
 
 using namespace std; //no need to explicitly add std:: before anything that's found from Standard C++ Library -> http://www.cplusplus.com/reference/
 
@@ -17,42 +18,6 @@ enum Direction {
 	East,
 	South,
 	West
-};
-
-//Character Class
-class Character {
-private:
-	int mapWidth;
-	int mapHeight;
-
-public:
-	string Name;
-	int Hp;
-	int Strength;
-	int MapPosX;
-	int MapPosY;
-
-	Character(string _name, int _hp, int _strength, int _mapPosX, int _mapPosY, int _mapWidth, int _mapHeight) {
-		Name = _name;
-		Hp = _hp;
-		Strength = _strength;
-		MapPosX = _mapPosX;
-		MapPosY = _mapPosY;
-		//map size for Move method
-		mapWidth = _mapWidth;
-		mapHeight = _mapHeight;
-	}
-
-	void Move(Direction dir) {
-		if (dir == North && MapPosY > 0)
-			MapPosY--; //one step up
-		else if (dir == West && MapPosX < mapWidth - 1)
-			MapPosX++; //one step right
-		else if (dir == South && MapPosY < mapHeight - 1)
-			MapPosY++; //one step down
-		else if (dir == East && MapPosX > 0)
-			MapPosX--; //one step left	
-	}
 };
 
 //Arrays-> http://www.cplusplus.com/doc/tutorial/arrays/
