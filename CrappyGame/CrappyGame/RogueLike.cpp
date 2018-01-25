@@ -38,7 +38,11 @@ public:
 		Strength = _strength;
 		MapPosX = _mapPosX;
 		MapPosY = _mapPosY;
+		//map size for Move method
+		mapWidth = _mapWidth;
+		mapHeight = _mapHeight;
 	}
+
 	void Move(Direction dir) {
 		if (dir == North && MapPosY > 0)
 			MapPosY--; //one step up
