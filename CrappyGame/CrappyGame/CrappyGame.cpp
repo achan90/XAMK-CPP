@@ -1,15 +1,15 @@
-//Osio 1
 #include "stdafx.h" //Visual Studio precompiled headers -> https://www.viva64.com/en/b/0265/
 #include <iostream> //cin, cout... -> http://www.cplusplus.com/reference/iostream/
-using namespace std; //no need to explicitly add std:: before anything that's found from Standard C++ Library -> http://www.cplusplus.com/reference/
-
-					 //Osio 2
 #include <string> //Strings are objects that represent sequences of characters -> http://www.cplusplus.com/reference/string/string/
 #include <iomanip> //Header providing parametric manipulators -> http://www.cplusplus.com/reference/iomanip/
 
-					 //Osio 1
+using namespace std; //no need to explicitly add std:: before anything that's found from Standard C++ Library -> http://www.cplusplus.com/reference/
+
 bool continueExecution = true;
 char userInput[1];
+
+const int mapWidth = 20;
+const int mapHeight = 10;
 
 //Enums -> http://www.cplusplus.com/doc/tutorial/other_data_types/
 enum Direction {
@@ -19,38 +19,26 @@ enum Direction {
 	West
 };
 
-
-//Osio 3b - Player struct to Character Class
+//Character Class
 class Character {
 private:
-
-	//Private variables
 	int mapWidth;
 	int mapHeight;
 
 public:
-	//Public variables (members, fields, properties)
-	string Name = "Sepi";
-	int Hp = 30;
-	int Strength = 7;
-	int MapPosX = 17;
-	int MapPosY = 3;
+	string Name;
+	int Hp;
+	int Strength;
+	int MapPosX;
+	int MapPosY;
 
-	//Public Methods
-
-	//Constructor method - optional way to create new Instance of Player (basically doing)
 	Character(string _name, int _hp, int _strength, int _mapPosX, int _mapPosY, int _mapWidth, int _mapHeight) {
 		Name = _name;
 		Hp = _hp;
 		Strength = _strength;
 		MapPosX = _mapPosX;
 		MapPosY = _mapPosY;
-
-		//map size in this scope for Move method
-		mapWidth = _mapWidth;
-		mapHeight = _mapHeight;
 	}
-
 	void Move(Direction dir) {
 		if (dir == North && MapPosY > 0)
 			MapPosY--; //one step up
@@ -62,11 +50,6 @@ public:
 			MapPosX--; //one step left	
 	}
 };
-//End of Osio 3
-
-
-
-//Osio 2
 
 //Arrays-> http://www.cplusplus.com/doc/tutorial/arrays/
 string keyCommands[][2]
@@ -86,9 +69,6 @@ string mapCharacters[][2]
 	{ "^","Mountain" }
 };
 
-const int mapWidth = 20;
-const int mapHeight = 10;
-
 string map[mapHeight][mapWidth]
 {
 	//1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 (0-19)
@@ -104,11 +84,8 @@ string map[mapHeight][mapWidth]
 	{ "^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^","^" }, //10 (0-9)
 };
 
-//Before our 'hero' was an object of structure 'player' and now it's instance of class Character...
+//hero is on object of class character
 Character hero("Sepi", 30, 7, 17, 3, mapWidth, mapHeight);
-
-
-// Osio 2
 
 //Is player on the road, plains, mountain or is there a tree where he stands
 void PrintPlayerPos() {
@@ -135,8 +112,6 @@ void ListCommands() {
 	for (int i = 0; i < arrOuterLength; i++) {
 		cout << left << setw(10) << keyCommands[i][0] << right << setw(20) << keyCommands[i][1] << endl;
 	}
-
-	//new line
 	cout << "\n";
 }
 
@@ -155,16 +130,13 @@ void DrawMap() {
 		//new line after columns loop
 		cout << "\n";
 	}
-
 	//Print where player is standing currently
 	PrintPlayerPos();
-
 	//new line after map is drawn
 	cout << "\n";
 }
 
 bool MainMenu() {
-
 	ListCommands();
 	DrawMap();
 
@@ -206,17 +178,13 @@ bool MainMenu() {
 	return true;
 }
 
-int main()
-{
-	//InitHero();
-
+int main() {
 	while (continueExecution)
 	{
 		//System (in this case Windows) call to clear console. Just to simulate game with one view...		
 		system("cls");
 
 		continueExecution = MainMenu();
-
 	}
 	return 0;
 }
