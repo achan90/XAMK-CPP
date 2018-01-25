@@ -7,7 +7,6 @@ Character::Character(string _name, int _hp, int _strength, int _mapPosX, int _ma
 	Strength = _strength;
 	MapPosX = _mapPosX;
 	MapPosY = _mapPosY;
-
 	//map size for Move method
 	mapWidth = _mapWidth;
 	mapHeight = _mapHeight;
